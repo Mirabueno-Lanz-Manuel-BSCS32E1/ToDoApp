@@ -6,7 +6,12 @@ using TodoList.Domain.Interface;
 
 namespace Todolist.Controllers
 {
-    public class HomeController : Controller
+	public class IActionResult Index(strimg id)
+    {
+        var temp = ServiceCollection.GetAll();
+    }
+
+	public class HomeController(ITodoSevice sevice) : Controller
     {
         private ToDoContext context;
         private ITodoRepository _todoRepository;
