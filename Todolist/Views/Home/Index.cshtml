@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ToDo>
+@using Todolist.Domain
+@model IEnumerable<ToDoList.Domain.ToDo>
 
 <div class="row">
     <div class="col-md-2">
@@ -6,21 +7,21 @@
             <div class="mb-3">
                 <label class="form-label">Category</label>
                 <select name="filter" class="form-select"
-                        asp-items="@(new SelectList(ViewBag.Categories,"CategoryId","Name",ViewBag.Filters.CategoryId))">
+                        asp-items="@(new SelectList(ViewBag.Categories, dataValueField: "CategoryId", dataTextField: "Name",ViewBag.Filters.CategoryId))">
                     <option value="all">ALL</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Due:</label>
                 <select name="filter" class="form-select"
-                        asp-items="@(new SelectList(ViewBag.DueFilters, "Key", "Value", ViewBag.Filters.Due))">
+                        asp-items="@(new SelectList(ViewBag.DueFilters, dataValueField: "Key", dataTextField: "Value", ViewBag.Filters.Due))">
                     <option value="all">All</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status:</label>
                 <select name="filter" class="form-select"
-                        asp-items="@(new SelectList(ViewBag.Statuses,"StatusId", "Name", ViewBag.Filters.StatusId))">
+                        asp-items="@(new SelectList(ViewBag.Statuses, dataValueField: "StatusId", dataTextField: "Name", ViewBag.Filters.StatusId))">
                     <option value="all">All</option>
                 </select>
             </div>
