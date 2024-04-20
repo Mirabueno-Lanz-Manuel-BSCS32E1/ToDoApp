@@ -1,9 +1,11 @@
-﻿namespace Todolist.Models
+namespace Todolist.Models
 {
-    public class Category
+    public Enum Category
     {
-        public string CategoryId { get; set; } = string.Empty;
-
-        public string Name { get; set; } = string.Empty;
+            SciFI,
+            Horror,
+            Adventure,
+            Romance,
+            SliceOfLife,
     }
 }
