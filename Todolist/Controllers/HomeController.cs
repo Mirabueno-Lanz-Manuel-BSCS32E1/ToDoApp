@@ -6,24 +6,41 @@ using TodoList.Domain.Interface;
 
 namespace Todolist.Controllers
 {
+    public class HomeController(ITodoService service) : Controller
+    { 
 	public class IActionResult Index(strimg id)
     {
         var temp = ServiceCollection.GetAll();
-    }
 
-	public class HomeController(ITodoSevice sevice) : Controller
-    {
-        private ToDoContext context;
-        private ITodoRepository _todoRepository;
+            //var filters = new Filters(id);
+            //VeiwBag.Filters = filters;
+            ViewBag.Categories = Enum.GetValues(typeof(Category)).OfType<dynamic>().Select(x => new { Key = x, Value = Enum.GetName(x) });
+            ViewBag.Statuses = Enum.GetValues(typeof(Status));
+            //VeiwBag.DueFilters = Filter.DueFilterValues;
+            var query = service.GetAll();
+            //IQueryable<ToDO> query = context.ToDoS
+            // .Include(t => t.category)
+            // .Include(t => t.status)
 
-        public HomeController(ToDoContext ctx, 
-            ITodoRepository todoRepository)
-        {
-            context = ctx;
-            _todoRepository = todoRepository;
+            //if (filters.HasCategory)
+            //{
+            //}
+
         }
 
-     
+        public class HomeController(ITodoSevice sevice) : Controller
+        {
+            private ToDoContext context;
+            private ITodoRepository _todoRepository;
+
+            public HomeController(ToDoContext ctx,
+                ITodoRepository todoRepository)
+            {
+                context = ctx;
+                _todoRepository = todoRepository;
+            }
+
+        }
 
         public IActionResult Index(string id)
         {
